@@ -54,31 +54,31 @@ Recommended cron configuration:
 # Commands
 
 <!-- commands -->
-
--   [`analytodon-cli aggregate dailyaccountstats`](#analytodon-cli-aggregate-dailyaccountstats)
--   [`analytodon-cli aggregate dailytootstats`](#analytodon-cli-aggregate-dailytootstats)
--   [`analytodon-cli auth requesttoken`](#analytodon-cli-auth-requesttoken)
--   [`analytodon-cli cleanup accountdata`](#analytodon-cli-cleanup-accountdata)
--   [`analytodon-cli cleanup accounts`](#analytodon-cli-cleanup-accounts)
--   [`analytodon-cli cleanup usercredentials`](#analytodon-cli-cleanup-usercredentials)
--   [`analytodon-cli cleanup users`](#analytodon-cli-cleanup-users)
--   [`analytodon-cli fetch accountstats`](#analytodon-cli-fetch-accountstats)
--   [`analytodon-cli fetch initialstats`](#analytodon-cli-fetch-initialstats)
--   [`analytodon-cli fetch tootstats`](#analytodon-cli-fetch-tootstats)
--   [`analytodon-cli hello PERSON`](#analytodon-cli-hello-person)
--   [`analytodon-cli hello world`](#analytodon-cli-hello-world)
--   [`analytodon-cli help [COMMAND]`](#analytodon-cli-help-command)
--   [`analytodon-cli mail weeklystats`](#analytodon-cli-mail-weeklystats)
--   [`analytodon-cli plugins`](#analytodon-cli-plugins)
--   [`analytodon-cli plugins:install PLUGIN...`](#analytodon-cli-pluginsinstall-plugin)
--   [`analytodon-cli plugins:inspect PLUGIN...`](#analytodon-cli-pluginsinspect-plugin)
--   [`analytodon-cli plugins:install PLUGIN...`](#analytodon-cli-pluginsinstall-plugin-1)
--   [`analytodon-cli plugins:link PLUGIN`](#analytodon-cli-pluginslink-plugin)
--   [`analytodon-cli plugins:uninstall PLUGIN...`](#analytodon-cli-pluginsuninstall-plugin)
--   [`analytodon-cli plugins:uninstall PLUGIN...`](#analytodon-cli-pluginsuninstall-plugin-1)
--   [`analytodon-cli plugins:uninstall PLUGIN...`](#analytodon-cli-pluginsuninstall-plugin-2)
--   [`analytodon-cli plugins update`](#analytodon-cli-plugins-update)
--   [`analytodon-cli tools rebuilddailytootstats`](#analytodon-cli-tools-rebuilddailytootstats)
+* [`analytodon-cli aggregate dailyaccountstats`](#analytodon-cli-aggregate-dailyaccountstats)
+* [`analytodon-cli aggregate dailytootstats`](#analytodon-cli-aggregate-dailytootstats)
+* [`analytodon-cli auth requesttoken`](#analytodon-cli-auth-requesttoken)
+* [`analytodon-cli cleanup accountdata`](#analytodon-cli-cleanup-accountdata)
+* [`analytodon-cli cleanup accounts`](#analytodon-cli-cleanup-accounts)
+* [`analytodon-cli cleanup tootstats`](#analytodon-cli-cleanup-tootstats)
+* [`analytodon-cli cleanup usercredentials`](#analytodon-cli-cleanup-usercredentials)
+* [`analytodon-cli cleanup users`](#analytodon-cli-cleanup-users)
+* [`analytodon-cli fetch accountstats`](#analytodon-cli-fetch-accountstats)
+* [`analytodon-cli fetch initialstats`](#analytodon-cli-fetch-initialstats)
+* [`analytodon-cli fetch tootstats`](#analytodon-cli-fetch-tootstats)
+* [`analytodon-cli hello PERSON`](#analytodon-cli-hello-person)
+* [`analytodon-cli hello world`](#analytodon-cli-hello-world)
+* [`analytodon-cli help [COMMAND]`](#analytodon-cli-help-command)
+* [`analytodon-cli mail weeklystats`](#analytodon-cli-mail-weeklystats)
+* [`analytodon-cli plugins`](#analytodon-cli-plugins)
+* [`analytodon-cli plugins:install PLUGIN...`](#analytodon-cli-pluginsinstall-plugin)
+* [`analytodon-cli plugins:inspect PLUGIN...`](#analytodon-cli-pluginsinspect-plugin)
+* [`analytodon-cli plugins:install PLUGIN...`](#analytodon-cli-pluginsinstall-plugin-1)
+* [`analytodon-cli plugins:link PLUGIN`](#analytodon-cli-pluginslink-plugin)
+* [`analytodon-cli plugins:uninstall PLUGIN...`](#analytodon-cli-pluginsuninstall-plugin)
+* [`analytodon-cli plugins:uninstall PLUGIN...`](#analytodon-cli-pluginsuninstall-plugin-1)
+* [`analytodon-cli plugins:uninstall PLUGIN...`](#analytodon-cli-pluginsuninstall-plugin-2)
+* [`analytodon-cli plugins update`](#analytodon-cli-plugins-update)
+* [`analytodon-cli tools rebuilddailytootstats`](#analytodon-cli-tools-rebuilddailytootstats)
 
 ## `analytodon-cli aggregate dailyaccountstats`
 
@@ -181,6 +181,27 @@ EXAMPLES
   $ analytodon-cli cleanup accounts
 ```
 
+## `analytodon-cli cleanup tootstats`
+
+Clean up old tootstats.
+
+```
+USAGE
+  $ analytodon-cli cleanup tootstats [-c <value>] [-d <value>] [-r <value>] [-x]
+
+FLAGS
+  -c, --connectionString=<value>  [default: mongodb://localhost:27017] MongoDB connection string
+  -d, --database=<value>          [default: analytodon] Source database name
+  -r, --days=<value>              [default: 30] Retain tootstats for this number of days back
+  -x, --dryRun                    Dry run, no actual changes made
+
+DESCRIPTION
+  Clean up old tootstats.
+
+EXAMPLES
+  $ analytodon-cli cleanup tootstats
+```
+
 ## `analytodon-cli cleanup usercredentials`
 
 Clean up user credentials.
@@ -247,12 +268,14 @@ Gather initial stats for all accounts (only 1 per call)
 
 ```
 USAGE
-  $ analytodon-cli fetch initialstats [-c <value>] [-d <value>] [-a <value>]
+  $ analytodon-cli fetch initialstats -t <value> [-c <value>] [-d <value>] [-a <value>] [-h <value>]
 
 FLAGS
   -a, --account=<value>           Only process specific account
   -c, --connectionString=<value>  [default: mongodb://localhost:27017] MongoDB connection string
   -d, --database=<value>          [default: analytodon] Source database name
+  -h, --host=<value>              [default: app.analytodon.com] App host URL
+  -t, --authorization=<value>     (required) Authorization header
 
 DESCRIPTION
   Gather initial stats for all accounts (only 1 per call)
@@ -349,11 +372,13 @@ Send weekly stats email to users
 
 ```
 USAGE
-  $ analytodon-cli mail weeklystats [-c <value>] [-d <value>] [-u <value>] [-z <value>]
+  $ analytodon-cli mail weeklystats -t <value> [-c <value>] [-d <value>] [-h <value>] [-u <value>] [-z <value>]
 
 FLAGS
   -c, --connectionString=<value>  [default: mongodb://localhost:27017] MongoDB connection string
   -d, --database=<value>          [default: analytodon] Source database name
+  -h, --host=<value>              [default: app.analytodon.com] App host URL
+  -t, --authorization=<value>     (required) Authorization header
   -u, --user=<value>              Only process specific user
   -z, --timezone=<value>          Process accounts with this timezone
 
@@ -615,5 +640,4 @@ DESCRIPTION
 EXAMPLES
   $ analytodon-cli tools rebuilddailytootstats
 ```
-
 <!-- commandsstop -->

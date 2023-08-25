@@ -3,8 +3,6 @@ import {Filter, MongoClient, Document} from 'mongodb';
 import {completeLogging} from '../../helpers/completeLogging';
 import {logger} from '../../helpers/logger';
 
-const BATCH_SIZE = 5;
-
 export default class Accountdata extends Command {
     static description = 'Clean up orphaned account data.';
 
