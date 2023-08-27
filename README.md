@@ -3,55 +3,40 @@
 CLI for [Analytodon](https://www.analytodon.com).
 
 <!-- toc -->
-* [Analytodon CLI](#analytodon-cli)
-* [Usage](#usage)
-* [Commands](#commands)
+
+-   [Analytodon CLI](#analytodon-cli)
+-   [Commands](#commands)
 <!-- tocstop -->
-
-# Usage
-
-<!-- usage -->
-```sh-session
-$ npm install -g analytodon-cli
-$ analytodon-cli COMMAND
-running command...
-$ analytodon-cli (--version)
-analytodon-cli/0.0.0 darwin-arm64 node-v18.17.1
-$ analytodon-cli --help [COMMAND]
-USAGE
-  $ analytodon-cli COMMAND
-...
-```
-<!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-* [`analytodon-cli aggregate dailyaccountstats`](#analytodon-cli-aggregate-dailyaccountstats)
-* [`analytodon-cli aggregate dailytootstats`](#analytodon-cli-aggregate-dailytootstats)
-* [`analytodon-cli auth requesttoken`](#analytodon-cli-auth-requesttoken)
-* [`analytodon-cli cleanup accountdata`](#analytodon-cli-cleanup-accountdata)
-* [`analytodon-cli cleanup accounts`](#analytodon-cli-cleanup-accounts)
-* [`analytodon-cli cleanup tootstats`](#analytodon-cli-cleanup-tootstats)
-* [`analytodon-cli cleanup usercredentials`](#analytodon-cli-cleanup-usercredentials)
-* [`analytodon-cli cleanup users`](#analytodon-cli-cleanup-users)
-* [`analytodon-cli fetch accountstats`](#analytodon-cli-fetch-accountstats)
-* [`analytodon-cli fetch initialstats`](#analytodon-cli-fetch-initialstats)
-* [`analytodon-cli fetch tootstats`](#analytodon-cli-fetch-tootstats)
-* [`analytodon-cli hello PERSON`](#analytodon-cli-hello-person)
-* [`analytodon-cli hello world`](#analytodon-cli-hello-world)
-* [`analytodon-cli help [COMMAND]`](#analytodon-cli-help-command)
-* [`analytodon-cli mail weeklystats`](#analytodon-cli-mail-weeklystats)
-* [`analytodon-cli plugins`](#analytodon-cli-plugins)
-* [`analytodon-cli plugins:install PLUGIN...`](#analytodon-cli-pluginsinstall-plugin)
-* [`analytodon-cli plugins:inspect PLUGIN...`](#analytodon-cli-pluginsinspect-plugin)
-* [`analytodon-cli plugins:install PLUGIN...`](#analytodon-cli-pluginsinstall-plugin-1)
-* [`analytodon-cli plugins:link PLUGIN`](#analytodon-cli-pluginslink-plugin)
-* [`analytodon-cli plugins:uninstall PLUGIN...`](#analytodon-cli-pluginsuninstall-plugin)
-* [`analytodon-cli plugins:uninstall PLUGIN...`](#analytodon-cli-pluginsuninstall-plugin-1)
-* [`analytodon-cli plugins:uninstall PLUGIN...`](#analytodon-cli-pluginsuninstall-plugin-2)
-* [`analytodon-cli plugins update`](#analytodon-cli-plugins-update)
-* [`analytodon-cli tools rebuilddailytootstats`](#analytodon-cli-tools-rebuilddailytootstats)
+
+-   [`analytodon-cli aggregate dailyaccountstats`](#analytodon-cli-aggregate-dailyaccountstats)
+-   [`analytodon-cli aggregate dailytootstats`](#analytodon-cli-aggregate-dailytootstats)
+-   [`analytodon-cli auth requesttoken`](#analytodon-cli-auth-requesttoken)
+-   [`analytodon-cli cleanup accountdata`](#analytodon-cli-cleanup-accountdata)
+-   [`analytodon-cli cleanup accounts`](#analytodon-cli-cleanup-accounts)
+-   [`analytodon-cli cleanup tootstats`](#analytodon-cli-cleanup-tootstats)
+-   [`analytodon-cli cleanup usercredentials`](#analytodon-cli-cleanup-usercredentials)
+-   [`analytodon-cli cleanup users`](#analytodon-cli-cleanup-users)
+-   [`analytodon-cli fetch accountstats`](#analytodon-cli-fetch-accountstats)
+-   [`analytodon-cli fetch initialstats`](#analytodon-cli-fetch-initialstats)
+-   [`analytodon-cli fetch tootstats`](#analytodon-cli-fetch-tootstats)
+-   [`analytodon-cli hello PERSON`](#analytodon-cli-hello-person)
+-   [`analytodon-cli hello world`](#analytodon-cli-hello-world)
+-   [`analytodon-cli help [COMMAND]`](#analytodon-cli-help-command)
+-   [`analytodon-cli mail weeklystats`](#analytodon-cli-mail-weeklystats)
+-   [`analytodon-cli plugins`](#analytodon-cli-plugins)
+-   [`analytodon-cli plugins:install PLUGIN...`](#analytodon-cli-pluginsinstall-plugin)
+-   [`analytodon-cli plugins:inspect PLUGIN...`](#analytodon-cli-pluginsinspect-plugin)
+-   [`analytodon-cli plugins:install PLUGIN...`](#analytodon-cli-pluginsinstall-plugin-1)
+-   [`analytodon-cli plugins:link PLUGIN`](#analytodon-cli-pluginslink-plugin)
+-   [`analytodon-cli plugins:uninstall PLUGIN...`](#analytodon-cli-pluginsuninstall-plugin)
+-   [`analytodon-cli plugins:uninstall PLUGIN...`](#analytodon-cli-pluginsuninstall-plugin-1)
+-   [`analytodon-cli plugins:uninstall PLUGIN...`](#analytodon-cli-pluginsuninstall-plugin-2)
+-   [`analytodon-cli plugins update`](#analytodon-cli-plugins-update)
+-   [`analytodon-cli tools rebuilddailytootstats`](#analytodon-cli-tools-rebuilddailytootstats)
 
 ## `analytodon-cli aggregate dailyaccountstats`
 
@@ -241,14 +226,14 @@ Gather initial stats for all accounts (only 1 per call)
 
 ```
 USAGE
-  $ analytodon-cli fetch initialstats -t <value> [-c <value>] [-d <value>] [-a <value>] [-h <value>]
+  $ analytodon-cli fetch initialstats [-c <value>] [-d <value>] [-a <value>] [-h <value>] [-t <value>]
 
 FLAGS
   -a, --account=<value>           Only process specific account
   -c, --connectionString=<value>  [default: mongodb://localhost:27017] MongoDB connection string
   -d, --database=<value>          [default: analytodon] Source database name
-  -h, --host=<value>              [default: app.analytodon.com] App host URL
-  -t, --authorization=<value>     (required) Authorization header
+  -h, --host=<value>              [default: https://app.analytodon.com] App host URL
+  -t, --authorization=<value>     [default: no-key] Authorization header
 
 DESCRIPTION
   Gather initial stats for all accounts (only 1 per call)
@@ -345,13 +330,13 @@ Send weekly stats email to users
 
 ```
 USAGE
-  $ analytodon-cli mail weeklystats -t <value> [-c <value>] [-d <value>] [-h <value>] [-u <value>] [-z <value>]
+  $ analytodon-cli mail weeklystats [-c <value>] [-d <value>] [-h <value>] [-t <value>] [-u <value>] [-z <value>]
 
 FLAGS
   -c, --connectionString=<value>  [default: mongodb://localhost:27017] MongoDB connection string
   -d, --database=<value>          [default: analytodon] Source database name
-  -h, --host=<value>              [default: app.analytodon.com] App host URL
-  -t, --authorization=<value>     (required) Authorization header
+  -h, --host=<value>              [default: https://app.analytodon.com] App host URL
+  -t, --authorization=<value>     [default: no-key] Authorization header
   -u, --user=<value>              Only process specific user
   -z, --timezone=<value>          Process accounts with this timezone
 
@@ -413,7 +398,7 @@ ALIASES
   $ analytodon-cli plugins add
 
 EXAMPLES
-  $ analytodon-cli plugins:install myplugin 
+  $ analytodon-cli plugins:install myplugin
 
   $ analytodon-cli plugins:install https://github.com/someuser/someplugin
 
@@ -473,7 +458,7 @@ ALIASES
   $ analytodon-cli plugins add
 
 EXAMPLES
-  $ analytodon-cli plugins:install myplugin 
+  $ analytodon-cli plugins:install myplugin
 
   $ analytodon-cli plugins:install https://github.com/someuser/someplugin
 
@@ -613,4 +598,5 @@ DESCRIPTION
 EXAMPLES
   $ analytodon-cli tools rebuilddailytootstats
 ```
+
 <!-- commandsstop -->
