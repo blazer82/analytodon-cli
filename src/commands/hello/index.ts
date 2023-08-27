@@ -1,11 +1,13 @@
 import {Command, Flags} from '@oclif/core';
+import {logger} from '../../helpers/logger';
+import {completeLogging} from '../../helpers/completeLogging';
 
 export default class Hello extends Command {
     static description = 'Say hello';
 
     static examples = [
         `$ oex hello friend --from oclif
-hello friend from oclif! (./src/commands/hello/index.ts)
+hello friend from oclif!
 `,
     ];
 
@@ -18,6 +20,8 @@ hello friend from oclif! (./src/commands/hello/index.ts)
     async run(): Promise<void> {
         const {args, flags} = await this.parse(Hello);
 
-        this.log(`hello ${args.person} from ${flags.from}! (./src/commands/hello/index.ts)`);
+        logger.info(`hello ${args.person} from ${flags.from}!`);
+
+        await completeLogging();
     }
 }

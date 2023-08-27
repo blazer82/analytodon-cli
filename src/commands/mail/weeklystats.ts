@@ -14,7 +14,7 @@ export default class WeeklyStats extends Command {
         connectionString: Flags.string({
             char: 'c',
             description: 'MongoDB connection string',
-            default: 'mongodb://localhost:27017',
+            default: process.env.MONGODB_URI || 'mongodb://localhost:27017',
         }),
         database: Flags.string({
             char: 'd',
@@ -24,12 +24,12 @@ export default class WeeklyStats extends Command {
         host: Flags.string({
             char: 'h',
             description: 'App host URL',
-            default: 'app.analytodon.com',
+            default: process.env.APP_URL || 'https://app.analytodon.com',
         }),
         authorization: Flags.string({
             char: 't',
             description: 'Authorization header',
-            required: true,
+            default: process.env.EMAIL_API_KEY || 'no-key',
         }),
         user: Flags.string({
             char: 'u',
@@ -97,7 +97,7 @@ export default class WeeklyStats extends Command {
                             logger.info(`Send weekly stats: Trigger mail for user ${user._id} with accounts ${accountIds.join(',')}`);
 
                             await axios.post(
-                                `https://${flags.host}/api/mail/weeklystats`,
+                                `${flags.host}/api/mail/weeklystats`,
                                 {userID: `${user._id}`, accounts: accountIds},
                                 {
                                     headers: {

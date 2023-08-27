@@ -1,0 +1,27 @@
+# Analytodon cron jobs
+
+#*/15 * * * * /analytodon-cli/bin/run hello analytodon -f "the cron tab"
+
+# analytodon initial stats
+* * * * * /analytodon-cli/bin/run fetch initialstats
+
+# analytodon fetch
+35 * * * * /analytodon-cli/bin/run fetch accountstats
+35 * * * * /analytodon-cli/bin/run fetch tootstats -a
+
+# analytodon aggregate
+5 * * * * /analytodon-cli/bin/run aggregate dailyaccountstats
+5 * * * * /analytodon-cli/bin/run aggregate dailytootstats
+
+# analytodon weekly mail
+0 19,20,21,22,23 * * 0 /analytodon-cli/bin/run mail weeklystats
+0 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 * * 1 /analytodon-cli/bin/run mail weeklystats
+
+# analytodon cleanup
+45 11 * * * /analytodon-cli/bin/run cleanup users
+46 11 * * * /analytodon-cli/bin/run cleanup usercredentials
+47 11 * * * /analytodon-cli/bin/run cleanup accounts
+48 11 * * * /analytodon-cli/bin/run cleanup accountdata
+40 2 * * * /analytodon-cli/bin/run cleanup tootstats
+
+# An empty line is required at the end of this file for a valid cron file.

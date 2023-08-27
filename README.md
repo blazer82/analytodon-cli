@@ -3,52 +3,25 @@
 CLI for [Analytodon](https://www.analytodon.com).
 
 <!-- toc -->
-
--   [Usage](#usage)
--   [Commands](#commands)
+* [Analytodon CLI](#analytodon-cli)
+* [Usage](#usage)
+* [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g analytodon-cli
 $ analytodon-cli COMMAND
 running command...
 $ analytodon-cli (--version)
-analytodon-cli/0.0.0 darwin-arm64 node-v16.19.0
+analytodon-cli/0.0.0 darwin-arm64 node-v18.17.1
 $ analytodon-cli --help [COMMAND]
 USAGE
   $ analytodon-cli COMMAND
 ...
 ```
-
-Recommended cron configuration:
-
-```crontab
-# Analytodon initial stats
-* * * * * /path/to/analytodon-cli fetch initialstats
-
-# Analytodon fetch
-35 * * * * /path/to/analytodon-cli fetch accountstats
-35 * * * * /path/to/analytodon-cli fetch tootstats
-
-# Analytodon aggregate
-5 * * * * /path/to/analytodon-cli aggregate dailyaccountstats
-5 * * * * /path/to/analytodon-cli aggregate dailytootstats
-
-# Analytodon weekly mail
-0 19,20,21,22,23 * * 0 /path/to/analytodon-cli mail weeklystats
-0 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 * * 1 /path/to/analytodon-cli mail weeklystats
-
-# Analytodon cleanup
-45 11 * * * /path/to/analytodon-cli cleanup users
-46 11 * * * /path/to/analytodon-cli cleanup usercredentials
-47 11 * * * /path/to/analytodon-cli cleanup accounts
-48 11 * * * /path/to/analytodon-cli cleanup accountdata
-```
-
 <!-- usagestop -->
 
 # Commands
@@ -325,7 +298,7 @@ DESCRIPTION
 
 EXAMPLES
   $ oex hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
+  hello friend from oclif!
 ```
 
 _See code: [dist/commands/hello/index.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/dist/commands/hello/index.ts)_
@@ -440,7 +413,7 @@ ALIASES
   $ analytodon-cli plugins add
 
 EXAMPLES
-  $ analytodon-cli plugins:install myplugin
+  $ analytodon-cli plugins:install myplugin 
 
   $ analytodon-cli plugins:install https://github.com/someuser/someplugin
 
@@ -500,7 +473,7 @@ ALIASES
   $ analytodon-cli plugins add
 
 EXAMPLES
-  $ analytodon-cli plugins:install myplugin
+  $ analytodon-cli plugins:install myplugin 
 
   $ analytodon-cli plugins:install https://github.com/someuser/someplugin
 

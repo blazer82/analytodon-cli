@@ -15,7 +15,7 @@ export default class Accounts extends Command {
         connectionString: Flags.string({
             char: 'c',
             description: 'MongoDB connection string',
-            default: 'mongodb://localhost:27017',
+            default: process.env.MONGODB_URI || 'mongodb://localhost:27017',
         }),
         database: Flags.string({
             char: 'd',
