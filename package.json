@@ -22,7 +22,7 @@
         "@oclif/plugin-help": "^5",
         "@oclif/plugin-plugins": "^2.1.7",
         "axios": "^0.27.2",
-        "megalodon": "^4.1.3",
+        "megalodon": "^7.0.0",
         "mongodb": "^4.12.1",
         "newrelic": "^10.6.2",
         "pino": "^8.15.0",
