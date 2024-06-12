@@ -13,6 +13,8 @@ jobs:
     build:
         name: Build
         runs-on: ubuntu-latest
+        env:
+            NEWRELIC_LICENSE_KEY: ${{ secrets.NEWRELIC_LICENSE_KEY }}
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
