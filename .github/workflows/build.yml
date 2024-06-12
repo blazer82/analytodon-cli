@@ -18,15 +18,15 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
+            - name: Install dependencies
+              run: npm ci
+            - name: Lint
+              run: npm run lint
             - name: 'Build docker image'
               uses: docker/build-push-action@v5
               with:
                   context: .
                   load: true
                   tags: ${{ env.TEST_TAG }}
-            - name: Install dependencies
-              run: npm ci
-            - name: Lint
-              run: npm run lint
             - name: Test
               run: docker run --rm -e NEWRELIC_LICENSE_KEY="${{ env.NEWRELIC_LICENSE_KEY }}" ${{ env.TEST_TAG }} /analytodon-cli/bin/run hello world

@@ -16,12 +16,14 @@ RUN rm -rf /var/lib/apt/lists/* \
 COPY crontab hello-cron
 COPY entrypoint.sh entrypoint.sh
 COPY package.json package.json
+COPY package-lock.json package-lock.json
 COPY newrelic.js newrelic.js
 COPY tsconfig.json tsconfig.json
 COPY README.md README.md
 COPY bin bin
 COPY src src
 
+RUN npm ci
 RUN npm i typescript
 RUN npm run build
 
