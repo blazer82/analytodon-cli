@@ -25,4 +25,4 @@ jobs:
                   load: true
                   tags: ${{ env.TEST_TAG }}
             - name: Test
-              run: docker run --rm -e NEWRELIC_LICENSE_KEY="${{ env.NEWRELIC_LICENSE_KEY }}" ${{ env.TEST_TAG }} /analytodon-cli/bin/run hello
+              run: docker run --rm -e NEWRELIC_LICENSE_KEY="${{ env.NEWRELIC_LICENSE_KEY }}" ${{ env.TEST_TAG }} /analytodon-cli/bin/run hello world
