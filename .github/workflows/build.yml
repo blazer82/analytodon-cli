@@ -1,0 +1,26 @@
+name: build
+
+on:
+    pull_request:
+    push:
+        branches:
+            - main
+
+env:
+    TEST_TAG: analytodon-cli:test
+
+jobs:
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            - name: 'Build docker image'
+              uses: docker/build-push-action@v5
+              with:
+                  context: .
+                  load: true
+                  tags: ${{ env.TEST_TAG }}
+            - name: Test
+              run: docker run --rm ${{ env.TEST_TAG }} /analytodon-cli/bin/run hello
