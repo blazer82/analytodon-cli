@@ -71,27 +71,30 @@ export const createInitialTootStats = async (db: Db, account: Document) => {
 
             const croppedStatsList = statsList.filter(({day}) => day.getTime() >= actualStartDate.getTime());
 
-            const calculatedStatsList = croppedStatsList.reduce((carry, stats, index) => {
-                if (!carry.length) {
-                    return [{...stats}];
-                } else if (!stats.repliesCount && !stats.boostsCount && !stats.favouritesCount) {
+            const calculatedStatsList = croppedStatsList.reduce(
+                (carry, stats, index) => {
+                    if (!carry.length) {
+                        return [{...stats}];
+                    } else if (!stats.repliesCount && !stats.boostsCount && !stats.favouritesCount) {
+                        return [
+                            ...carry,
+                            {
+                                ...stats,
+                                repliesCount: carry[index - 1].repliesCount,
+                                boostsCount: carry[index - 1].boostsCount,
+                                favouritesCount: carry[index - 1].favouritesCount,
+                            },
+                        ];
+                    }
                     return [
                         ...carry,
                         {
                             ...stats,
-                            repliesCount: carry[index - 1].repliesCount,
-                            boostsCount: carry[index - 1].boostsCount,
-                            favouritesCount: carry[index - 1].favouritesCount,
                         },
                     ];
-                }
-                return [
-                    ...carry,
-                    {
-                        ...stats,
-                    },
-                ];
-            }, [] as typeof statsList);
+                },
+                [] as typeof statsList,
+            );
 
             await processInBatches(BATCH_SIZE, calculatedStatsList, (stats) =>
                 db.collection('dailytootstats').insertOne({

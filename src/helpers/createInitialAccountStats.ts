@@ -93,18 +93,21 @@ export const createInitialAccountStats = async (db: Db, account: Document) => {
                 }
             }
 
-            const calculatedStatsList = statsList.reduce((carry, stats, index) => {
-                if (!carry.length) {
-                    return [{...stats}];
-                }
-                return [
-                    ...carry,
-                    {
-                        ...stats,
-                        followersCount: carry[index - 1].followersCount - stats.followersCount,
-                    },
-                ];
-            }, [] as typeof statsList);
+            const calculatedStatsList = statsList.reduce(
+                (carry, stats, index) => {
+                    if (!carry.length) {
+                        return [{...stats}];
+                    }
+                    return [
+                        ...carry,
+                        {
+                            ...stats,
+                            followersCount: carry[index - 1].followersCount - stats.followersCount,
+                        },
+                    ];
+                },
+                [] as typeof statsList,
+            );
 
             const croppedStatsList = calculatedStatsList.filter(
                 ({day}) => day.getTime() >= actualStartDate.getTime() && day.getTime() <= actualEndDate.getTime(),
