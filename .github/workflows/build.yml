@@ -24,6 +24,8 @@ jobs:
                   context: .
                   load: true
                   tags: ${{ env.TEST_TAG }}
+            - name: Install dependencies
+              run: npm ci
             - name: Lint
               run: npm run lint
             - name: Test
