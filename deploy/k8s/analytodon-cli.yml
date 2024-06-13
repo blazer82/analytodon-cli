@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: analytodon-cli
+    namespace: analytodon
+spec:
+    replicas: 1
+    strategy:
+        type: Recreate
+    selector:
+        matchLabels:
+            app: analytodon-cli
+    template:
+        metadata:
+            labels:
+                app: analytodon-cli
+        spec:
+            affinity:
+                nodeAffinity:
+                    preferredDuringSchedulingIgnoredDuringExecution:
+                        - weight: 1
+                          preference:
+                              matchExpressions:
+                                  - key: project
+                                    operator: In
+                                    values:
+                                        - analytodon
+            containers:
+                - name: analytodon-cli
+                  image: productionbuild/analytodon-cli:latest
+                  imagePullPolicy: Always
+                  env:
+                      - name: NEWRELIC_LICENSE_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: newrelic-secret
+                                key: license-key
+                      - name: MONGODB_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: mongodb-secret
+                                key: uri
+                      - name: EMAIL_API_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: emailapi-secret
+                                key: key
