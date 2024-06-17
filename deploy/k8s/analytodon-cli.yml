@@ -24,7 +24,7 @@ spec:
                                   - key: project
                                     operator: In
                                     values:
-                                        - analytodon
+                                        - mastodon
             containers:
                 - name: analytodon-cli
                   image: productionbuild/analytodon-cli:latest
@@ -45,3 +45,10 @@ spec:
                             secretKeyRef:
                                 name: emailapi-secret
                                 key: key
+                  resources:
+                      requests:
+                          memory: '10Mi'
+                          cpu: '100m'
+                      limits:
+                          memory: '744Mi'
+                          cpu: '500m'
