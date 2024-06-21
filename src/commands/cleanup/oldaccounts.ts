@@ -1,5 +1,5 @@
 import {Command, Flags} from '@oclif/core';
-import {Document, Filter, MongoClient, ObjectId} from 'mongodb';
+import {Document, Filter, MongoClient} from 'mongodb';
 import {completeLogging} from '../../helpers/completeLogging';
 import {logger} from '../../helpers/logger';
 

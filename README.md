@@ -17,6 +17,7 @@ CLI for [Analytodon](https://www.analytodon.com).
 -   [`analytodon-cli auth requesttoken`](#analytodon-cli-auth-requesttoken)
 -   [`analytodon-cli cleanup accountdata`](#analytodon-cli-cleanup-accountdata)
 -   [`analytodon-cli cleanup accounts`](#analytodon-cli-cleanup-accounts)
+-   [`analytodon-cli cleanup oldaccounts`](#analytodon-cli-cleanup-oldaccounts)
 -   [`analytodon-cli cleanup tootstats`](#analytodon-cli-cleanup-tootstats)
 -   [`analytodon-cli cleanup usercredentials`](#analytodon-cli-cleanup-usercredentials)
 -   [`analytodon-cli cleanup users`](#analytodon-cli-cleanup-users)
@@ -149,6 +150,29 @@ EXAMPLES
 ```
 
 _See code: [src/commands/cleanup/accounts.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/cleanup/accounts.ts)_
+
+## `analytodon-cli cleanup oldaccounts`
+
+Delete users with old accounts
+
+```
+USAGE
+  $ analytodon-cli cleanup oldaccounts [-c <value>] [-d <value>] [-h <value>] [-x]
+
+FLAGS
+  -c, --connectionString=<value>  [default: mongodb://localhost:27017] MongoDB connection string
+  -d, --database=<value>          [default: analytodon] Source database name
+  -h, --host=<value>              [default: https://app.analytodon.com] App host URL
+  -x, --dryRun                    Dry run, no actual changes made
+
+DESCRIPTION
+  Delete users with old accounts
+
+EXAMPLES
+  $ analytodon-cli cleanup oldaccounts
+```
+
+_See code: [src/commands/cleanup/oldaccounts.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/cleanup/oldaccounts.ts)_
 
 ## `analytodon-cli cleanup tootstats`
 
