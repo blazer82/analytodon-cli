@@ -67,7 +67,7 @@ export default class OldAccounts extends Command {
                 const credentialSet = new Set(credentialList.map(({user}) => user));
 
                 usersQuery['_id'] = {
-                    $in: credentialSet,
+                    $in: Array.from(credentialSet),
                     isActive: true,
                     emailVerified: true,
                     oldAccountDeletionNoticeSent: {$ne: true},
