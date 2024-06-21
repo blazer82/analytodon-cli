@@ -25,7 +25,8 @@ CLI for [Analytodon](https://www.analytodon.com).
 -   [`analytodon-cli fetch tootstats`](#analytodon-cli-fetch-tootstats)
 -   [`analytodon-cli hello PERSON`](#analytodon-cli-hello-person)
 -   [`analytodon-cli hello world`](#analytodon-cli-hello-world)
--   [`analytodon-cli help [COMMAND]`](#analytodon-cli-help-command)
+-   [`analytodon-cli help [COMMANDS]`](#analytodon-cli-help-commands)
+-   [`analytodon-cli mail oldaccounts`](#analytodon-cli-mail-oldaccounts)
 -   [`analytodon-cli mail weeklystats`](#analytodon-cli-mail-weeklystats)
 -   [`analytodon-cli plugins`](#analytodon-cli-plugins)
 -   [`analytodon-cli plugins:install PLUGIN...`](#analytodon-cli-pluginsinstall-plugin)
@@ -58,6 +59,8 @@ EXAMPLES
   $ analytodon-cli aggregate dailyaccountstats
 ```
 
+_See code: [src/commands/aggregate/dailyaccountstats.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/aggregate/dailyaccountstats.ts)_
+
 ## `analytodon-cli aggregate dailytootstats`
 
 Aggregate daily toot stats for all accounts
@@ -77,6 +80,8 @@ DESCRIPTION
 EXAMPLES
   $ analytodon-cli aggregate dailytootstats
 ```
+
+_See code: [src/commands/aggregate/dailytootstats.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/aggregate/dailytootstats.ts)_
 
 ## `analytodon-cli auth requesttoken`
 
@@ -99,6 +104,8 @@ EXAMPLES
   $ analytodon-cli auth requesttoken
 ```
 
+_See code: [src/commands/auth/requesttoken.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/auth/requesttoken.ts)_
+
 ## `analytodon-cli cleanup accountdata`
 
 Clean up orphaned account data.
@@ -119,6 +126,8 @@ EXAMPLES
   $ analytodon-cli cleanup accountdata
 ```
 
+_See code: [src/commands/cleanup/accountdata.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/cleanup/accountdata.ts)_
+
 ## `analytodon-cli cleanup accounts`
 
 Clean up accounts.
@@ -138,6 +147,8 @@ DESCRIPTION
 EXAMPLES
   $ analytodon-cli cleanup accounts
 ```
+
+_See code: [src/commands/cleanup/accounts.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/cleanup/accounts.ts)_
 
 ## `analytodon-cli cleanup tootstats`
 
@@ -160,6 +171,8 @@ EXAMPLES
   $ analytodon-cli cleanup tootstats
 ```
 
+_See code: [src/commands/cleanup/tootstats.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/cleanup/tootstats.ts)_
+
 ## `analytodon-cli cleanup usercredentials`
 
 Clean up user credentials.
@@ -179,6 +192,8 @@ DESCRIPTION
 EXAMPLES
   $ analytodon-cli cleanup usercredentials
 ```
+
+_See code: [src/commands/cleanup/usercredentials.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/cleanup/usercredentials.ts)_
 
 ## `analytodon-cli cleanup users`
 
@@ -200,6 +215,8 @@ EXAMPLES
   $ analytodon-cli cleanup users
 ```
 
+_See code: [src/commands/cleanup/users.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/cleanup/users.ts)_
+
 ## `analytodon-cli fetch accountstats`
 
 Gather account stats for all accounts
@@ -219,6 +236,8 @@ DESCRIPTION
 EXAMPLES
   $ analytodon-cli fetch accountstats
 ```
+
+_See code: [src/commands/fetch/accountstats.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/fetch/accountstats.ts)_
 
 ## `analytodon-cli fetch initialstats`
 
@@ -242,6 +261,8 @@ EXAMPLES
   $ analytodon-cli fetch initialstats
 ```
 
+_See code: [src/commands/fetch/initialstats.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/fetch/initialstats.ts)_
+
 ## `analytodon-cli fetch tootstats`
 
 Gather toot stats for all accounts
@@ -264,13 +285,15 @@ EXAMPLES
   $ analytodon-cli fetch tootstats
 ```
 
+_See code: [src/commands/fetch/tootstats.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/fetch/tootstats.ts)_
+
 ## `analytodon-cli hello PERSON`
 
 Say hello
 
 ```
 USAGE
-  $ analytodon-cli hello [PERSON] -f <value>
+  $ analytodon-cli hello PERSON -f <value>
 
 ARGUMENTS
   PERSON  Person to say hello to
@@ -286,7 +309,7 @@ EXAMPLES
   hello friend from oclif!
 ```
 
-_See code: [dist/commands/hello/index.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/dist/commands/hello/index.ts)_
+_See code: [src/commands/hello/index.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/hello/index.ts)_
 
 ## `analytodon-cli hello world`
 
@@ -304,16 +327,18 @@ EXAMPLES
   hello world! (./src/commands/hello/world.ts)
 ```
 
-## `analytodon-cli help [COMMAND]`
+_See code: [src/commands/hello/world.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/hello/world.ts)_
+
+## `analytodon-cli help [COMMANDS]`
 
 Display help for analytodon-cli.
 
 ```
 USAGE
-  $ analytodon-cli help [COMMAND] [-n]
+  $ analytodon-cli help [COMMANDS] [-n]
 
 ARGUMENTS
-  COMMAND  Command to show help for.
+  COMMANDS  Command to show help for.
 
 FLAGS
   -n, --nested-commands  Include all nested commands in the output.
@@ -322,7 +347,32 @@ DESCRIPTION
   Display help for analytodon-cli.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.19/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.20/src/commands/help.ts)_
+
+## `analytodon-cli mail oldaccounts`
+
+Send deletion reminder email to users with old accounts
+
+```
+USAGE
+  $ analytodon-cli mail oldaccounts [-c <value>] [-d <value>] [-h <value>] [-t <value>] [-u <value>] [-x]
+
+FLAGS
+  -c, --connectionString=<value>  [default: mongodb://localhost:27017] MongoDB connection string
+  -d, --database=<value>          [default: analytodon] Source database name
+  -h, --host=<value>              [default: https://app.analytodon.com] App host URL
+  -t, --authorization=<value>     [default: no-key] Authorization header
+  -u, --user=<value>              Only process specific user
+  -x, --dryRun                    Dry run, no actual changes made
+
+DESCRIPTION
+  Send deletion reminder email to users with old accounts
+
+EXAMPLES
+  $ analytodon-cli mail oldaccounts
+```
+
+_See code: [src/commands/mail/oldaccounts.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/mail/oldaccounts.ts)_
 
 ## `analytodon-cli mail weeklystats`
 
@@ -347,6 +397,8 @@ EXAMPLES
   $ analytodon-cli mail weeklystats
 ```
 
+_See code: [src/commands/mail/weeklystats.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/mail/weeklystats.ts)_
+
 ## `analytodon-cli plugins`
 
 List installed plugins.
@@ -365,7 +417,7 @@ EXAMPLES
   $ analytodon-cli plugins
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.7/src/commands/plugins/index.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/index.ts)_
 
 ## `analytodon-cli plugins:install PLUGIN...`
 
@@ -420,12 +472,17 @@ FLAGS
   -h, --help     Show CLI help.
   -v, --verbose
 
+GLOBAL FLAGS
+  --json  Format output as json.
+
 DESCRIPTION
   Displays installation properties of a plugin.
 
 EXAMPLES
   $ analytodon-cli plugins:inspect myplugin
 ```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/inspect.ts)_
 
 ## `analytodon-cli plugins:install PLUGIN...`
 
@@ -465,6 +522,8 @@ EXAMPLES
   $ analytodon-cli plugins:install someuser/someplugin
 ```
 
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/install.ts)_
+
 ## `analytodon-cli plugins:link PLUGIN`
 
 Links a plugin into the CLI for development.
@@ -492,28 +551,7 @@ EXAMPLES
   $ analytodon-cli plugins:link myplugin
 ```
 
-## `analytodon-cli plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ analytodon-cli plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ analytodon-cli plugins unlink
-  $ analytodon-cli plugins remove
-```
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/link.ts)_
 
 ## `analytodon-cli plugins:uninstall PLUGIN...`
 
@@ -537,6 +575,31 @@ ALIASES
   $ analytodon-cli plugins unlink
   $ analytodon-cli plugins remove
 ```
+
+## `analytodon-cli plugins:uninstall PLUGIN...`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ analytodon-cli plugins:uninstall PLUGIN...
+
+ARGUMENTS
+  PLUGIN  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ analytodon-cli plugins unlink
+  $ analytodon-cli plugins remove
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/uninstall.ts)_
 
 ## `analytodon-cli plugins:uninstall PLUGIN...`
 
@@ -577,6 +640,8 @@ DESCRIPTION
   Update installed plugins.
 ```
 
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/update.ts)_
+
 ## `analytodon-cli tools rebuilddailytootstats`
 
 Aggregate daily toot stats for all accounts
@@ -598,5 +663,7 @@ DESCRIPTION
 EXAMPLES
   $ analytodon-cli tools rebuilddailytootstats
 ```
+
+_See code: [src/commands/tools/rebuilddailytootstats.ts](https://github.com/blazer82/analytodon-cli/blob/v0.0.0/src/commands/tools/rebuilddailytootstats.ts)_
 
 <!-- commandsstop -->
