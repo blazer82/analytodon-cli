@@ -68,11 +68,11 @@ export default class OldAccounts extends Command {
 
                 usersQuery['_id'] = {
                     $in: Array.from(credentialSet),
-                    isActive: true,
-                    emailVerified: true,
-                    oldAccountDeletionNoticeSent: {$ne: true},
-                    role: 'account-owner',
                 };
+                usersQuery['isActive'] = true;
+                usersQuery['emailVerified'] = true;
+                usersQuery['oldAccountDeletionNoticeSent'] = {$ne: true};
+                usersQuery['role'] = 'account-owner';
             }
 
             const userList = await db.collection('users').find(usersQuery).project({_id: 1}).toArray();
