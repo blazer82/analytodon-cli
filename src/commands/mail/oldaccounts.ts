@@ -42,7 +42,10 @@ export default class OldAccounts extends Command {
     };
 
     async run(): Promise<void> {
-        logger.info('Send old accounts email to users');
+        logger.info('Send old accounts email to users started.');
+
+        const cutoffDate = new Date();
+        cutoffDate.setDate(cutoffDate.getDate() - 90);
 
         try {
             const {flags} = await this.parse(OldAccounts);
@@ -59,7 +62,7 @@ export default class OldAccounts extends Command {
             } else {
                 const credentialsQuery: Filter<Document> = {
                     updatedAt: {
-                        $lt: new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 90),
+                        $lt: cutoffDate,
                     },
                 };
 
@@ -105,6 +108,8 @@ export default class OldAccounts extends Command {
         } catch (error: any) {
             logger.error(`Send old accounts: Failed with error ${error?.message}`);
         }
+
+        logger.info('Send old accounts email to users done.');
 
         await completeLogging();
     }
