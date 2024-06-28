@@ -26,5 +26,6 @@
 47 11 * * * /analytodon-cli/bin/run cleanup accounts
 48 11 * * * /analytodon-cli/bin/run cleanup accountdata
 40 2 * * * /analytodon-cli/bin/run cleanup tootstats
+5 17 * * * /analytodon-cli/bin/run cleanup oldaccounts
 
 # An empty line is required at the end of this file for a valid cron file.
