@@ -15,16 +15,6 @@ spec:
             labels:
                 app: analytodon-cli
         spec:
-            affinity:
-                nodeAffinity:
-                    preferredDuringSchedulingIgnoredDuringExecution:
-                        - weight: 1
-                          preference:
-                              matchExpressions:
-                                  - key: project
-                                    operator: In
-                                    values:
-                                        - default
             containers:
                 - name: analytodon-cli
                   image: productionbuild/analytodon-cli:latest
