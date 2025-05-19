@@ -30,11 +30,11 @@
     },
     "devDependencies": {
         "@oclif/test": "^2.2.12",
-        "@types/chai": "^4",
+        "@types/chai": "^5.0.0",
         "@types/mocha": "^9.0.0",
         "@types/node": "^16.18.4",
         "@typescript-eslint/eslint-plugin": "^7.13.0",
-        "chai": "^4",
+        "chai": "^5.0.0",
         "eslint": "^8.57.0",
         "eslint-config-oclif": "^5.2.0",
         "eslint-config-oclif-typescript": "^3.1.7",
